@@ -15,7 +15,6 @@ setup(
         "Environment :: Other Environment",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
-        "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: MIT"
         ],
     description="Export your OpenProject work packages to google calendar"

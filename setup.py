@@ -5,6 +5,9 @@ setup(
     version='0.1',
     packages=find_packages(),
     install_requires=["requests", "oauth2client"],
+    entry_points={
+        'console_scripts': ['op2gc=openproject_google_calendar.main:main']
+    },
     zip_safe=True,
     url='https://cat.celad.com',
     license='MIT',

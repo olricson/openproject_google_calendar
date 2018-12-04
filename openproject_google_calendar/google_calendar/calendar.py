@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys
 import httplib2
 from googleapiclient.discovery import build, Resource
@@ -8,14 +7,10 @@ from datetime import datetime
 from httplib2 import Http
 from oauth2client import file, client, tools
 
-import os
-import pytz
-
-BASE_DIR = os.path.dirname(os.path.realpath(sys.argv[0]))
 CLIENT_SECRET_FILE = 'calender_key.json'
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 scopes = [SCOPES]
-APPLICATION_NAME = 'Google Calendar API Python'
+APPLICATION_NAME = 'OpenProject To Google Calendar'
 
 
 class Calendar:
@@ -35,13 +30,14 @@ class Calendar:
 
         self._service = build('calendar', 'v3', http=creds.authorize(Http()), cache_discovery=False)
 
-    def create_event(self, calendar_id, start, end, desc, ):
+    def create_event(self, calendar_id, start, end, name, desc=''):
+        end_date = end if end is not None else start
 
         event = self._service.events().insert(calendarId=calendar_id, body={
             'description': desc,
-            'summary': desc,
+            'summary': name,
             'start': {'date': start},
-            'end': {'date': end},
+            'end': {'date': end_date},
         }).execute()
         return event['id']
 
@@ -60,5 +56,5 @@ class Calendar:
 
 
 if __name__ == '__main__':
-    m=Calendar('credentials.json')
-    m.create_event(calendar_id='-',start='2018-12-5', end='2018-12-6', desc='toto')
+    c = Calendar('credentials.json')
+    c.create_event(calendar_id='-',start='2018-12-5', end='2018-12-6', name='toto')

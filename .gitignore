@@ -1,5 +1,8 @@
 .idea
 .DS_Store
 __pycache__
+build
+dist
+*.egg-info
 credentials.json
 token.json

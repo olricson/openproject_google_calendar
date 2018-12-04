@@ -26,7 +26,8 @@ class Calendar:
         creds = store.get()
         if not creds or creds.invalid:
             flow = client.flow_from_clientsecrets(self._credentials_file, SCOPES)
-            creds = tools.run_flow(flow, store)
+            flags = tools.argparser.parse_args('--auth_host_name localhost --logging_level INFO'.split())
+            creds = tools.run_flow(flow, store, flags)
 
         self._service = build('calendar', 'v3', http=creds.authorize(Http()), cache_discovery=False)
 

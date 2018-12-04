@@ -4,7 +4,7 @@ setup(
     name='openproject_google_calendar',
     version='0.1',
     packages=find_packages(),
-    install_requires=["python-google-calendar-api", "requests"],
+    install_requires=["requests", "oauth2client"],
     zip_safe=True,
     url='https://cat.celad.com',
     license='MIT',
